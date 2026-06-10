@@ -1,0 +1,36 @@
+#name: Deploy Laravel to Hostinger
+#
+#on:
+#  push:
+#    branches: [ main ]  # اگر برنچ شما master است، این را تغییر دهید
+#
+#jobs:
+#  deploy:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v3
+#
+#      - name: Setup PHP
+#        uses: shivammathur/setup-php@v2
+#        with:
+#          php-version: '8.2'  # نسخه PHP سرور خود را وارد کنید
+#
+#      - name: Install Composer dependencies
+#        run: composer install --no-dev --optimize-autoloader --no-interaction
+#
+#      - name: Deploy to Hostinger via SSH
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{ secrets.VPS_HOST }}
+#          username: ${{ secrets.VPS_USER }}
+#          port: ${{ secrets.VPS_PORT }}
+#          key: ${{ secrets.VPS_SSH_KEY }}
+#          script: |
+#            cd /home/u573287159/domains/cardifygroup.com/public_html/api/mazorya-back/
+#            git pull origin main
+#            composer install --no-dev --optimize-autoloader --no-interaction
+#            php artisan migrate --force
+#            php artisan config:cache
+#            php artisan route:cache
+#            php artisan view:cache
