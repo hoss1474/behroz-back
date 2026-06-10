@@ -14,7 +14,7 @@ Route::get('/projects', [ProjectController::class, 'index']);
 Route::get('/projects/{id}', [ProjectController::class, 'show']);
 
 Route::get('/blogs', [BlogController::class, 'index']);
-Route::get('/{lang}/blogs/{slug}', [BlogController::class, 'show']);
+Route::get('/blogs/{id}', [BlogController::class, 'show']);
 
 Route::post('/contact', [ContactController::class, 'store']);
 Route::get('/contact', [ContactController::class, 'index']);
