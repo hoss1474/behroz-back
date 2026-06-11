@@ -14,6 +14,7 @@ class ProjectController extends Controller
     {
         $projects = Project::latest()->get();
 
+
         return response()->json([
             'status' => true,
             'count'  => $projects->count(),

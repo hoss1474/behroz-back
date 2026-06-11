@@ -18,18 +18,22 @@ class Project extends Model
         'director',
         'video_upload',
         'cast',
-        'color_grade',
+        'color_grade_after',
+        'color_grade_before',
     ];
 
-    protected $casts = [
-        'color_grade' => 'array', // برای ذخیره به‌صورت آرایه
-    ];
-
-
-    public function getVideoUploadUrlAttribute()
+    public function getVideoUploadAttribute($value)
     {
-        return $this->video_upload
-            ? url(Storage::url($this->video_upload))
-            : null;
+        return $value ? url(Storage::url($value)) : null;
+    }
+
+    public function getColorGradeAfterAttribute($value)
+    {
+        return $value ? url(Storage::url($value)) : null;
+    }
+
+    public function getColorGradeBeforeAttribute($value)
+    {
+        return $value ? url(Storage::url($value)) : null;
     }
 }
